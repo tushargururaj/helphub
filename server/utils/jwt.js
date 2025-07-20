@@ -5,7 +5,7 @@ const verifyToken = (token) =>{
 };
 
 const generateToken = (payload) => {
-    return jwt.sign(payload, process.env.JWT_SECRET,{expiresIn:300});
+    return jwt.sign(payload, process.env.JWT_SECRET,{expiresIn:3600});
 };
 
 module.exports = {verifyToken, generateToken};

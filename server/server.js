@@ -1,7 +1,9 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
 const authRoutes = require("./routes/authRoutes");
+const problemRoutes = require('./routes/problemRoutes');
 const db = require('./config/db');
+const jwtAuthMiddleware = require('./middlewares/jwtAuthmiddleware');
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
@@ -16,6 +18,7 @@ app.get("/", async (req,res)=>{
 })
 
 app.use("/api/auth", authRoutes);
+app.use("/api/problem",jwtAuthMiddleware, problemRoutes);
 
 app.listen(PORT,()=>{
     console.log(`Listening to API at port ${PORT}`);
